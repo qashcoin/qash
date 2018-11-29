@@ -256,14 +256,10 @@ namespace CryptoNote {
 			logger(ERROR, BRIGHT_RED) << "Failed to construct miner tx, summaryAmounts = " << summaryAmounts << " not equal blockReward = " << blockReward;
 			return false;
 		}
-
 		tx.version = CURRENT_TRANSACTION_VERSION;
 		//lock
 		tx.unlockTime = height + m_minedMoneyUnlockWindow;
 		tx.inputs.push_back(in);
-        if (in.blockIndex == 1) {
-            blockReward = 150000000000000;
-        } 
 		return true;
 	}
 
