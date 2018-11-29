@@ -1073,8 +1073,8 @@ bool Blockchain::validate_miner_transaction(const Block& b, uint32_t height, siz
     return false;
   }
 
-  if (minerReward > reward) {
-    logger(ERROR, BRIGHT_RED) << "Coinbase transaction spend too much money: " << m_currency.formatAmount(minerReward) <<
+  if (minerReward > reward && height > 1) {
+    logger(ERROR, BRIGHT_RED) << "Coinbase transaction attempted to spend too much money: " << m_currency.formatAmount(minerReward) <<
       ", block reward is " << m_currency.formatAmount(reward);
     return false;
   } else if (minerReward < reward) {
