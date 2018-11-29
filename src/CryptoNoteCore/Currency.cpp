@@ -209,10 +209,6 @@ namespace CryptoNote {
 			return false;
 		}
 
-		if (in.blockIndex == 1) {
-			blockReward = 150000000000000;
-		}
-
 		std::vector<uint64_t> outAmounts;
 		decompose_amount_into_digits(blockReward, UINT64_C(0),
 			[&outAmounts](uint64_t a_chunk) { outAmounts.push_back(a_chunk); },
