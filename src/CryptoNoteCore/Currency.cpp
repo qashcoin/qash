@@ -204,11 +204,14 @@ namespace CryptoNote {
 
 		uint64_t blockReward;
 		int64_t emissionChange;
-		if (!getBlockReward(blockMajorVersion, medianSize, currentBlockSize, alreadyGeneratedCoins, fee, blockReward, emissionChange)) {
-			logger(INFO) << "Block is too big";
-			return false;
+		if (in.blockIndex == 1) {
+			blockReward = 150000000000000;
+		} else {
+			if (!getBlockReward(blockMajorVersion, medianSize, currentBlockSize, alreadyGeneratedCoins, fee, blockReward, emissionChange)) {
+				logger(INFO) << "Block is too big";
+				return false;
+			}
 		}
-
 		std::vector<uint64_t> outAmounts;
 		decompose_amount_into_digits(blockReward, UINT64_C(0),
 			[&outAmounts](uint64_t a_chunk) { outAmounts.push_back(a_chunk); },
