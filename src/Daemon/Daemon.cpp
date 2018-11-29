@@ -200,8 +200,6 @@ int main(int argc, char* argv[])
       return 0;
     }
 
-	std::cout << "Loading" << CryptoNote::CRYPTO_NAME << " v" << PROJECT_VERSION_LONG; 
-
     logger(INFO) << "Module folder: " << argv[0];
 
     bool testnet_mode = command_line::get_arg(vm, arg_testnet_on);
