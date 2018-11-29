@@ -109,7 +109,7 @@ const char     MINER_CONFIG_FILE_NAME[]                      = "miner_conf.json"
 } // parameters
 
 const char     CRYPTONOTE_NAME[]                             = "qash";
-const char     GENESIS_COINBASE_TX_HEX[]                     = "010a01ff0001a0f1a3bde701029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121013e7c6efddc37e86f550ec4064dd90ab8ed263675ca2fee879ecb2462ae34f14c";
+const char     GENESIS_COINBASE_TX_HEX[]                     = "010a01ff0001a0f1a3bde701029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd0880712101cfc7fde2a705f5041fded72c4647bfe44a9a3adc30814e5685ee7779abd93462";
 
 const uint8_t  CURRENT_TRANSACTION_VERSION                   =  1;
 const uint8_t  BLOCK_MAJOR_VERSION_1                         =  1;
