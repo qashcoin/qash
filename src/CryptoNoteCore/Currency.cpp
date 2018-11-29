@@ -204,13 +204,9 @@ namespace CryptoNote {
 
 		uint64_t blockReward;
 		int64_t emissionChange;
-		if (in.blockIndex == 1) {
-			blockReward = 150000000000000;
-		} else {
-			if (!getBlockReward(blockMajorVersion, medianSize, currentBlockSize, alreadyGeneratedCoins, fee, blockReward, emissionChange)) {
-				logger(INFO) << "Block is too big";
-				return false;
-			}
+		if (!getBlockReward(blockMajorVersion, medianSize, currentBlockSize, alreadyGeneratedCoins, fee, blockReward, emissionChange)) {
+			logger(INFO) << "Block is too big";
+			return false;
 		}
 		std::vector<uint64_t> outAmounts;
 		decompose_amount_into_digits(blockReward, UINT64_C(0),
@@ -265,6 +261,9 @@ namespace CryptoNote {
 		//lock
 		tx.unlockTime = height + m_minedMoneyUnlockWindow;
 		tx.inputs.push_back(in);
+        if (in.blockIndex == 1) {
+            blockReward = 150000000000000;
+        } 
 		return true;
 	}
 
