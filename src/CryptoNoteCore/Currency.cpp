@@ -1,7 +1,7 @@
 // Copyright (c) 2012-2016, The CryptoNote developers, The Bytecoin developers
 // Copyright (c) 2016-2018  zawy12
 // Copyright (c) 2016-2018, The Geem developers
-// Copyright (c) 2018-2019, The Qash Team
+// Copyright (c) 2018-2019, The Qash Stablecoin Project
 //
 // This file is part of Bytecoin.
 //
