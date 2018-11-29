@@ -156,9 +156,7 @@ namespace CryptoNote {
 		{
 			baseReward = CryptoNote::parameters::TAIL_EMISSION_REWARD;
 		}
-		if (height == 1) {
-			baseReward = 150000000000000;
-		}
+
 		size_t blockGrantedFullRewardZone = blockGrantedFullRewardZoneByBlockVersion(blockMajorVersion);
 		medianSize = std::max(medianSize, blockGrantedFullRewardZone);
 		if (currentBlockSize > UINT64_C(2) * medianSize) {
@@ -209,6 +207,10 @@ namespace CryptoNote {
 		if (!getBlockReward(blockMajorVersion, medianSize, currentBlockSize, alreadyGeneratedCoins, fee, blockReward, emissionChange)) {
 			logger(INFO) << "Block is too big";
 			return false;
+		}
+
+		if (height == 1) {
+			baseReward = 150000000000000;
 		}
 
 		std::vector<uint64_t> outAmounts;
