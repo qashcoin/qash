@@ -209,8 +209,8 @@ namespace CryptoNote {
 			return false;
 		}
 
-		if (height == 1) {
-			baseReward = 150000000000000;
+		if (in.blockIndex == 1) {
+			blockReward = 150000000000000;
 		}
 
 		std::vector<uint64_t> outAmounts;
