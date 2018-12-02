@@ -1,6 +1,7 @@
 // Copyright (c) 2012-2016, The CryptoNote developers, The Bytecoin developers, The Monero developers
 // Copyright (c) 2018, Ryo Currency Project
 // Copyright (c) 2016-2018, The Geem developers
+// Copyright (c) 2018-2019 Qash Developers
 //
 // This file is part of Bytecoin.
 //
@@ -753,7 +754,7 @@ uint64_t Blockchain::getMinimalFee(uint32_t height) {
 
 	// calculate average difficulty for ~last month
 	uint64_t avgDifficultyCurrent = getAvgDifficultyForHeight(height, window * 7 * 4);
-	
+
 	// historical reference moving average difficulty
 	uint64_t avgDifficultyHistorical = m_blocks[height].cumulative_difficulty / height;
 
@@ -982,7 +983,7 @@ difficulty_type Blockchain::get_next_difficulty_for_alternative_chain(const std:
 
     if (!main_chain_start_offset)
       ++main_chain_start_offset; //skip genesis block
-    
+
     // get difficulties and timestamps from relevant main chain blocks
     for (; main_chain_start_offset < main_chain_stop_offset; ++main_chain_start_offset) {
       timestamps.push_back(m_blocks[main_chain_start_offset].bl.timestamp);
@@ -1925,6 +1926,10 @@ bool Blockchain::addNewBlock(const Block& bl_, block_verification_context& bvc) 
     //check that block refers to chain tail
     if (!(bl.previousBlockHash == getTailId())) {
       //chain switching or wrong block
+      logger(INFO) << "handling alternative block " << Common::podToHex(id)
+                   << " at height " << boost::get<BaseInput>(bl.baseTransaction.inputs.front()).blockIndex
+                   << " as it doesn't refer to chain tail " << Common::podToHex(getTailId())
+                   << ", its prev. block hash: " << Common::podToHex(bl.previousBlockHash);
       bvc.m_added_to_main_chain = false;
       add_result = handle_alternative_block(bl, id, bvc);
     } else {
