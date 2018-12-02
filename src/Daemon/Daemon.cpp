@@ -279,7 +279,7 @@ int main(int argc, char* argv[])
       logger(ERROR, BRIGHT_RED) << "Failed to initialize p2p server.";
       return 1;
     }
-    logger(INFO) << "P2p server initialized OK";
+    logger(INFO, BRIGHT_GREEN) << "P2P server initialized OK!";
 
     //logger(INFO) << "Initializing core rpc server...";
     //if (!rpc_server.init(vm)) {
@@ -301,7 +301,7 @@ int main(int argc, char* argv[])
       dch.start_handling();
     }
 
-    logger(INFO) << "Starting core rpc server on address " << rpcConfig.getBindAddress();
+    logger(INFO) << "Starting core RPC server on address " << rpcConfig.getBindAddress();
     rpcServer.start(rpcConfig.bindIp, rpcConfig.bindPort);
     rpcServer.restrictRPC(command_line::get_arg(vm, arg_restricted_rpc));
     rpcServer.enableCors(command_line::get_arg(vm, arg_enable_cors));
